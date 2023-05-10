@@ -3,8 +3,6 @@ from django.db import models
 
 # Create your models here.
 class Customer(models.Model):
-    order_set = True
-    objects = objects
     name = models.CharField(max_length=200, null=True)
     phone = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200, null=True)
@@ -49,3 +47,6 @@ class Orders(models.Model):
     product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     status = models.CharField(max_length=200, null=True, choices=STATUS)
+
+    def __str__(self):
+        return self.product.name
